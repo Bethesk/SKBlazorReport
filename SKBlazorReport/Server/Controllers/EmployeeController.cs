@@ -36,14 +36,14 @@ namespace SKBlazorReport.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Employee>>> GetEmployees()
         {
-            var filings = await _employeeService.GetEmployees();
+            var employees = await _employeeService.GetEmployees();
 
-            if (filings == null)
+            if (employees == null)
             {
                 return NotFound();
             }
 
-            return Ok(filings);
+            return Ok(employees);
         }
     }
 }
