@@ -1,0 +1,40 @@
+﻿@page "/employees"
+@using SKBlazorReport.Client.Services
+@using SKBlazorReport.Shared
+
+@inject IEmployeeService EmployeeService
+
+<h1>employees</h1>
+    @foreach (var e in EmployeeService.Employees)
+    {
+        <div style="padding:15px;border-bottom:solid 1px #0094ff;">
+            @e.EmployeeID @e.FirstName | @e.LastName
+        </div>
+    }
+
+@code {
+    //private List<Filing> filings;
+
+    protected override async Task OnInitializedAsync()
+    {
+       await EmployeeService.LoadEmployees();
+    }
+    //protected async override Task OnInitializedAsync()
+    //{
+    //    await LoadData();
+    //    //return base.OnInitializedAsync();
+    //}
+    //public async Task LoadData()
+    //{
+    //    try
+    //    {
+    //        filings = await Http.GetFromJsonAsync<List<Filing>>("api/Filing");
+
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        Console.WriteLine(ex.Message);
+    //    }
+    //    StateHasChanged();
+    //}
+}
