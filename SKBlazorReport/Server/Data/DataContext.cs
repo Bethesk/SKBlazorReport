@@ -13,7 +13,7 @@ namespace SKBlazorReport.Server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Employee>().ToTable("Employee");
+            modelBuilder.Entity<Employee>().ToTable("Employees");
             
         }
     }

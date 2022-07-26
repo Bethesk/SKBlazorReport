@@ -5,19 +5,40 @@
 @inject IEmployeeService EmployeeService
 
 <h1>employees</h1>
-    @foreach (var e in EmployeeService.Employees)
-    {
-        <div style="padding:15px;border-bottom:solid 1px #0094ff;">
-            @e.EmployeeID @e.FirstName | @e.LastName
-        </div>
-    }
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Filing Name</th>
+                <th>Filing Number</th>
+             </tr>
+        </thead>
+        <tbody>
+            @if (EmployeeService.Employees == null)
+            {
+                <tr><td><em>No Filing records...</em></td></tr>
+            }
+            else
+            {
+                @foreach (var employee in EmployeeService.Employees)
+                {
+                    <tr>
+                        <td>@employee.EmployeeID</td>
+                        <td>@employee.FirstName</td>
+                        <td>@employee.LastName</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
 
 @code {
     //private List<Filing> filings;
 
     protected override async Task OnInitializedAsync()
     {
-       await EmployeeService.LoadEmployees();
+        await EmployeeService.LoadEmployees();
     }
     //protected async override Task OnInitializedAsync()
     //{
